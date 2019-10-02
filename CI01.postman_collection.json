@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "cf56e024-3397-4695-b9b2-120d83019636",
+		"name": "CI01",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录",
+			"item": [
+				{
+					"name": "POST请求——登录成功",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "828d8b99-c9d7-48db-9aba-c7a683be6158",
+								"exec": [
+									"//断言返回码为200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"//断言success值为true\r",
+									"pm.test(\"断言success值为true\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"//断言code值为10000\r",
+									"pm.test(\"断言code值为10000\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(10000);\r",
+									"});\r",
+									"\r",
+									"//断言message值为\"操作成功！\"\r",
+									"pm.test(\"断言message值为[操作成功！]\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"操作成功！\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"mobile\":\"13800000002\", \r\n\"password\":\"123456\"}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/sys/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"sys",
+								"login"
+							]
+						},
+						"description": "Tpshop-LoginAPI-001"
+					},
+					"response": []
+				},
+				{
+					"name": "POST请求——用户名错误",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c04c4a6d-271b-45e3-984a-132727990fa8",
+								"exec": [
+									"//断言返回码为200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"//断言success值为false\r",
+									"pm.test(\"断言success值为false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false);\r",
+									"});\r",
+									"\r",
+									"//断言code值为20001\r",
+									"pm.test(\"断言code值为20001\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(20001);\r",
+									"});\r",
+									"\r",
+									"//断言message值为\"用户名或密码错误\"\r",
+									"pm.test(\"断言message值为[用户名或密码错误]\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"用户名或密码错误\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"mobile\":\"13800000666\", \r\n\"password\":\"123456\"}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/sys/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"sys",
+								"login"
+							]
+						},
+						"description": "Tpshop-LoginAPI-002"
+					},
+					"response": []
+				},
+				{
+					"name": "POST请求——请求参数为空",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b4903088-9da4-4286-8803-ec5c63d1e8d7",
+								"exec": [
+									"//断言返回码为200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"//断言success值为false\r",
+									"pm.test(\"断言success值为false\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false);\r",
+									"});\r",
+									"\r",
+									"//断言code值为99999\r",
+									"pm.test(\"断言code值为99999\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(99999);\r",
+									"});\r",
+									"\r",
+									"//断言message值为\"抱歉，系统繁忙，请稍后重试！\"\r",
+									"pm.test(\"断言message值为[抱歉，系统繁忙，请稍后重试！]\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"抱歉，系统繁忙，请稍后重试！\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/sys/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"sys",
+								"login"
+							]
+						},
+						"description": "Tpshop-LoginAPI-006"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
